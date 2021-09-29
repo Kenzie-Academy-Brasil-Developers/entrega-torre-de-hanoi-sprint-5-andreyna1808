@@ -1,244 +1,116 @@
-/* GERAL */
-* {
+/* RESET */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, button {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
     margin: 0;
+    outline: 0 none;
     padding: 0;
+    vertical-align: baseline;
     box-sizing: border-box;
-}
-
-body {
-    background-color: black;
-}
-.container{
-    padding-top: 15px;
-    text-align: center;
-}
-
-/* HEADER */
-header {
-    text-align: center;
-    color: white;
-}
-header h1 {
-    font-size: 15vw;
-    font-family: 'Londrina Solid';
-    text-transform: uppercase;
-}
-header #cabecalho {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-header #extaKenzie {
-    visibility: hidden;
-    font-family: 'Londrina Solid';
-    font-weight: 100;
-    font-size: 1.1em;
-    text-align: left;
-}
-header #restart {
-    align-self: center;
-    margin-right: -10px;
-}
+    }
 
 /* MAIN */
-main {
-    display: flex;
-    flex-direction: column;
+
+body {
+    background-image: url(./wooden.jpeg);
 }
-#main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: -10px;
+
+body h1 {
+    color: #E8E8DB;
+    text-shadow: 1px 1px 1px #E8E8DB;
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 27px;
+    padding: 20px;
+    text-transform: uppercase;
 }
-#main .torre {
-    width: 12px;
-    height: 100px;
-    margin: 20px;
+
+.main {
+    width: 100vw;
+    height: 80vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    background-color: white;    
+    margin-top: 40px;
 }
-#main .torre .bloco {
-    height: 20px;
+
+#torre1{
+    width: 33vw;
+    height: 60vh;
+    border: 0.3px solid #858377;
+    margin-bottom: 100px;
+    background-color: #E8E8DB;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+#torre1:hover{
+    border: solid #3a0a14;
+    background-color: #aca99a;
+}
+#bloco1{
+    z-index: 2;
+    width: 100px;
+    height: 40px;
+    background-color: #010440;
+    border: solid #3a0a14;
     border-radius: 5px;
-    border: 2px solid #000;
-}
-#main .torre #bloco1 {
-    width: 50px;
-    background-color: red;
-    cursor: pointer;
-}
-#main .torre #bloco2 {
-    width: 70px;
-    background-color: blue;
-    cursor: pointer;
-}
-#main .torre #bloco3 {
-    width: 90px;
-    background-color:yellow;
-    cursor: pointer;
-}
-#main .torre #bloco4 {
-    width: 110px;
-    background-color: green;
-    cursor: pointer;
+    
 }
 
-#main .torre #bloco1:hover {
-    background-color: rgb(78, 4, 4);
-}
-#main .torre #bloco2:hover {
-    background-color: rgb(5, 5, 121);
-}
-#main .torre #bloco3:hover {
-    background-color:rgb(165, 165, 7);
-}
-#main .torre #bloco4:hover {
-    background-color: rgb(3, 58, 3);
-}
+#bloco2{
+    z-index: 2;
+    width: 80px;
+    height: 40px;
+    background-color: #0798F2;
+    border: solid #3a0a14;
+    border-radius: 5px;   
+} 
 
-/* BUTTONS */
-.bonus {
-    margin: 10px;
-    width: 120px;
-    cursor: pointer;
-}
-#tresDiscos{
-    width: 120px;
-    height: 50px;
-    margin: 2px;
-}
-#quatroDiscos{
-    width: 120px;
-    height: 50px;
-    margin: 2px;
+#bloco3{
+    z-index: 2;
+    width: 60px;
+    height: 40px;
+    background-color: #F2E41B;
+    border: solid #3a0a14;
+    border-radius: 5px;   
+} 
+#bloco4{
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    background-color: #F22D1B;
+    border: solid #3a0a14;
+    border-radius: 5px;   
+} 
 
-}
-#cincoDiscos{
-    width: 120px;
-    height: 50px;
-    margin: 2px;
-}
-#tresDiscos:hover{
-    background-color: green;
-}
-#quatroDiscos:hover{
-    background-color: green;
-}
-#cincoDiscos:hover{
-    background-color: green;
-}
 
-button {
-    border: none;
-    transition: 0.2s, color 0.2s;
+#torre2{
+    width: 33vw;
+    height: 60vh;
+    border: 0.3px solid #858377;
+    margin-bottom: 100px;
+    background-color: #E8E8DB;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
-button:hover {
-    cursor: pointer;
+#torre2:hover{
+    border: solid #3a0a14;
+    background-color: #aca99a;
 }
-#btn-start {
-    font-size: 20px;
-    padding: 10px 40px;
-    margin-top: -50px;
-    vertical-align: middle;
-    background-color: #7f9c45;
-    color: #fff;
+#torre3{
+    width: 33vw;
+    height: 60vh;
+    border: 0.3px solid #858377;
+    margin-bottom: 100px;
+    background-color: #E8E8DB;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
-
-#btn-restart {
-    display: none;
-    font-size: 15px;
-    padding: 8px 10px;
-    margin-bottom: 5px;
-    color: #000;
-}
-#btn-restart:hover {
-    cursor: pointer;
-    background-color: #922e2c;
-    color: #fff;
-}
-
-#msg {
-    position: absolute;
-    z-index: 1;
-    transform: translate(50%, 50%);
-    right: 50%;
-    margin-top: -30px;
-    font-weight: 600;
-    font-size: 8vw;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* MEDIA QUERIES */
-@media (min-width: 667px) {
-    .container{
-        margin: 0 auto;
-        padding-top: 30px;
-    }
-    /* HEADER */
-    header h1 {
-        font-size: 100px;   
-    }
-    header #cabecalho {
-        width: 85%;
-    }
-    header #extaKenzie {
-        visibility: hidden;
-        display: flex;
-        justify-content: space-between;            
-        font-size: 1.5em;
-    }
-    header #extaKenzie #time-content{
-        margin-left: 50px;
-    }
-
-    /* #MAIN */
-    #main {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    #main .torre {
-        width: 30px;
-        height: 220px;
-        margin: 80px; 
-        margin-bottom: 0;
-        border-radius: 7px 7px 0;
-    }
-    #main .torre .bloco {
-        height: 35px;
-    }
-    #main .torre #bloco1 {
-        width: 65px;
-    }
-    #main .torre #bloco2 {
-        width: 100px;
-    }
-    #main .torre #bloco3 {
-        width: 135px;
-    }
-    #main .torre #bloco4 {
-        width: 170px;
-    }
-    #msg {
-        font-size: 40px;
-    }
-
-    #base {
-        display: none;
-        width: 80%;
-        height: 50px;
-        border-radius: 10px;
-        margin: 0 auto;
-        background-color: rgb(77, 6, 6);
-    }
+#torre3:hover{
+    border: solid #3a0a14;
+    background-color: #aca99a;
 }
