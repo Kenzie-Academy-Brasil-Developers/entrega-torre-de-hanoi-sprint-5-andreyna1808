@@ -1,87 +1,87 @@
-//BASICAO
-const main = document.getElementById('main');
-const extaKenzie = document.getElementById('extaKenzie');
-const msg = document.getElementById('msg');
-const movimentos = document.getElementById('movimentos');
-const divBase = document.getElementById('base');
+const main = document.querySelector('.main')
+const torre1 = document.createElement('div')
+const torre2 = document.createElement('div')
+const torre3 = document.createElement('div')
 
-// CONSTRUÇÃO DAS TORRES E BLOCOS
-function criarTorres() {
-    for (let i = 1; i <= 3; i++) {
-        const torre = document.createElement('div');
-        torre.classList.add('torre');
-        torre.id = 'torre' + i;
-        main.appendChild(torre);
+torre1.className = 'torre'
+torre2.className = 'torre'
+torre3.className = 'torre'
+torre1.id = 'torre1'
+torre2.id = 'torre2'
+torre3.id = 'torre3'
+
+main.appendChild(torre1)
+main.appendChild(torre2)
+main.appendChild(torre3)
+
+const bloco1 = document.createElement('div')
+const bloco2 = document.createElement('div')
+const bloco3 = document.createElement('div')
+const bloco4 = document.createElement('div')
+
+bloco1.id = 'bloco1'
+bloco2.id = 'bloco2'
+bloco3.id = 'bloco3'
+bloco4.id = 'bloco4'
+
+torre1.appendChild(bloco1)
+torre1.appendChild(bloco2)
+torre1.appendChild(bloco3)
+torre1.appendChild(bloco4)
+
+let controle = true
+let elementoClicado = null
+
+
+function primeiroClick(id){
+    let torre = document.getElementById(id)
+    if(torre.lastElementChild !== null){
+        elementoClicado = torre.lastElementChild
+        controle = false
     }
 }
-function criarBlocos() {
-    for (let i = 1; i <= 4; i++) {
-        const bloco = document.createElement('div');
-        bloco.classList.add('bloco');
-        bloco.id = 'bloco' + i;
-        torre1.appendChild(bloco);
+
+function segundoClick(id){
+    let torre = document.getElementById(id)
+    if(torre.lastElementChild === null){
+        torre.appendChild(elementoClicado)
+        elementoClicado = torre.lastElementChild
+        controle = true
+    }else if(torre.lastElementChild.clientWidth > elementoClicado.clientWidth){
+        console.log(torre.lastElementChild)
+        console.log(elementoClicado)
+        torre.appendChild(elementoClicado)
+        elementoClicado = torre.lastElementChild
+        controle = true
     }
 }
 
-// INICIAR O JOGO
-let torres;
-const btnStart = document.getElementById('btn-start');
-const iniciarJogo = () => {
-    btnStart.style.display = 'none';
-    btnRestart.style.display = 'inline-block';
-    extaKenzie.style.visibility = 'visible';
-    divBase.style.display = 'block';
-    criarTorres();
-    criarBlocos();
-    movimentos.innerText = `Movimentos: ${count}`;
-
-    torres = document.querySelectorAll('.torre');
-    torres.forEach((item) => {
-        item.addEventListener("click", escolhaTorre);
-    });
-
-    time();
-}
-btnStart.addEventListener('click', iniciarJogo);
-
-
-// LOGICA PARA O JOGO
-
-
-// === O MAIS IMPORTANTE
-
-// RENICIAR O JOGO SEM ATUALIZAR A PAGINA HSHSSH
-const btnRestart = document.getElementById('btn-restart');
-const reiniciarJogo = () => {
-    torres.forEach((item) => {
-        item.innerHTML = '';
-    });
-
-    msg.innerText = '';
-    count = 0;
-    movimentos.innerText = `Movimentos: ${count}`;
-
-    criarBlocos();
-    clearInterval(conometro);
-    time();
-    main.style.pointerEvents = 'visible';
-    msg.style.padding = 0;
-}
-btnRestart.addEventListener('click', reiniciarJogo);
-
-// MENSAGEM NO FINAL DO JOGO == CAMPEAO... VENCEDORRR
-const final = () => {
-    if (torres[2].childElementCount === 4) {
-        mensagemFinal();
-        main.style.pointerEvents = 'none';
-        clearInterval(conometro);       
+function handleClick(id){
+    if(controle === true){
+        primeiroClick(id)
+    }else{
+        segundoClick(id)
     }
 }
-const mensagemFinal = () => {
-    msg.innerHTML = 'Aobahh, você conseguiu!';
-    msg.style.color = '#fff';
-    msg.style.backgroundColor = '#00800092';
-    msg.style.padding = 20 + 'px';
+
+const torres = document.querySelectorAll('.torre')
+for(let i = 0; i < torres.length; i ++){
+    torres[i].addEventListener('click', function(){
+        handleClick(torres[i].id)
+    })
 }
 
-//CRONOMETRO EM CONSTRUÇÃO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
