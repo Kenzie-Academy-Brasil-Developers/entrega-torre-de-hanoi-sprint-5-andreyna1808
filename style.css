@@ -1,0 +1,243 @@
+/* GERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+.container{
+    padding-top: 15px;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    color: white;
+}
+header h1 {
+    font-size: 15vw;
+    font-family: 'Londrina Solid';
+    text-transform: uppercase;
+}
+header #cabecalho {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+header #extaKenzie {
+    visibility: hidden;
+    font-family: 'Londrina Solid';
+    font-weight: 100;
+    font-size: 1.1em;
+    text-align: left;
+}
+header #restart {
+    align-self: center;
+    margin-right: -10px;
+}
+
+/* MAIN */
+main {
+    display: flex;
+    flex-direction: column;
+}
+#main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#main .torre {
+    width: 12px;
+    height: 100px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: white;    
+}
+#main .torre .bloco {
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #000;
+}
+#main .torre #bloco1 {
+    width: 50px;
+    background-color: red;
+    cursor: pointer;
+}
+#main .torre #bloco2 {
+    width: 70px;
+    background-color: blue;
+    cursor: pointer;
+}
+#main .torre #bloco3 {
+    width: 90px;
+    background-color:yellow;
+    cursor: pointer;
+}
+#main .torre #bloco4 {
+    width: 110px;
+    background-color: green;
+    cursor: pointer;
+}
+
+#main .torre #bloco1:hover {
+    background-color: rgb(78, 4, 4);
+}
+#main .torre #bloco2:hover {
+    background-color: rgb(5, 5, 121);
+}
+#main .torre #bloco3:hover {
+    background-color:rgb(165, 165, 7);
+}
+#main .torre #bloco4:hover {
+    background-color: rgb(3, 58, 3);
+}
+
+/* BUTTONS */
+.bonus {
+    margin: 10px;
+    width: 120px;
+    cursor: pointer;
+}
+#tresDiscos{
+    width: 120px;
+    height: 50px;
+    margin: 2px;
+}
+#quatroDiscos{
+    width: 120px;
+    height: 50px;
+    margin: 2px;
+
+}
+#cincoDiscos{
+    width: 120px;
+    height: 50px;
+    margin: 2px;
+}
+#tresDiscos:hover{
+    background-color: green;
+}
+#quatroDiscos:hover{
+    background-color: green;
+}
+#cincoDiscos:hover{
+    background-color: green;
+}
+
+button {
+    border: none;
+    transition: 0.2s, color 0.2s;
+}
+button:hover {
+    cursor: pointer;
+}
+#btn-start {
+    font-size: 20px;
+    padding: 10px 40px;
+    margin-top: -50px;
+    vertical-align: middle;
+    background-color: #7f9c45;
+    color: #fff;
+}
+
+#btn-restart {
+    display: none;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    color: #000;
+}
+#btn-restart:hover {
+    cursor: pointer;
+    background-color: #922e2c;
+    color: #fff;
+}
+
+#msg {
+    position: absolute;
+    z-index: 1;
+    transform: translate(50%, 50%);
+    right: 50%;
+    margin-top: -30px;
+    font-weight: 600;
+    font-size: 8vw;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 667px) {
+    .container{
+        margin: 0 auto;
+        padding-top: 30px;
+    }
+    /* HEADER */
+    header h1 {
+        font-size: 100px;   
+    }
+    header #cabecalho {
+        width: 85%;
+    }
+    header #extaKenzie {
+        visibility: hidden;
+        display: flex;
+        justify-content: space-between;            
+        font-size: 1.5em;
+    }
+    header #extaKenzie #time-content{
+        margin-left: 50px;
+    }
+    
+    /* #MAIN */
+    #main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #main .torre {
+        width: 25px;
+        height: 215px;
+        margin: 80px; 
+        margin-bottom: 0;
+    }
+    #main .torre .bloco {
+        height: 35px;
+    }
+    #main .torre #bloco1 {
+        width: 65px;
+    }
+    #main .torre #bloco2 {
+        width: 100px;
+    }
+    #main .torre #bloco3 {
+        width: 135px;
+    }
+    #main .torre #bloco4 {
+        width: 170px;
+    }
+    #msg {
+        font-size: 40px;
+    }
+
+    #base {
+        display: none;
+        width: 80%;
+        height: 50px;
+        border-radius: 10px;
+        margin: 0 auto;
+        background-color: rgb(77, 6, 6);
+    }
+}
