@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Torre de Hanoi</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div id="title">
+                <h1> Torre de Hanoi </h1>
+            </div>
+            
+            <div id="cabecalho">
+                <div id="counts">
+                    <p id='movimentos'>Movimentos:</p>
+                    <p id="time-content">00:00:00</p>
+                </div>
+                <div id="restart">
+                    <button type="button" id="btn-restart">Reiniciar</button>
+                </div>
+            </div>
+        </header>
+        
+        <button type="button" id="btn-start">Iniciar</button>
+
+        <p id="msg"></p>
+        <main>
+            <div id=main></div>
+            <div id="base"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
