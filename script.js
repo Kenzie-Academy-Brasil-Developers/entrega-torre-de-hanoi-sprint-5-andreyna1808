@@ -45,41 +45,10 @@ const iniciarJogo = () => {
 btnStart.addEventListener('click', iniciarJogo);
 
 
-// VALIDAÇÃO
-let blocoAtual = '';
-let count = 0;
+// LOGICA PARA O JOGO
 
-function escolhaTorre(e) {
-    const torreEscolhida = e.currentTarget;
 
-    validaJogada(torreEscolhida);
-    
-}
-
-const validaJogada = (torreEscolhida) => {
-    
-    if (blocoAtual === '' && torreEscolhida.childElementCount !== 0) {
-        blocoAtual = torreEscolhida.firstElementChild;
-    } else if (blocoAtual === '' && torreEscolhida.childElementCount === 0) {
-        mensagemErr();
-    }
-
-     else if (torreEscolhida.childElementCount === 0) {
-        torreEscolhida.insertAdjacentElement('afterbegin', blocoAtual);
-        count++
-        blocoAtual = '';
-    } else if (torreEscolhida.firstElementChild.clientWidth > blocoAtual.clientWidth) {
-        torreEscolhida.insertAdjacentElement('afterbegin', blocoAtual);
-        count++
-        blocoAtual = '';
-    } else if (torreEscolhida.firstElementChild.clientWidth < blocoAtual.clientWidth) {
-        mensagemErr();
-        blocoAtual = '';
-    }
-
-    movimentos.innerText = `Movimentos: ${count}`;
-    final();
-}
+// === O MAIS IMPORTANTE
 
 // RENICIAR O JOGO SEM ATUALIZAR A PAGINA HSHSSH
 const btnRestart = document.getElementById('btn-restart');
@@ -115,25 +84,4 @@ const mensagemFinal = () => {
     msg.style.padding = 20 + 'px';
 }
 
-const timeContent = document.getElementById('time-content');
-let conometro;
-
-const time = () => {
-    let minuto = 0;
-    let segundo = 0;
-    let cent = 0;
-
-    conometro = setInterval(() => {
-        cent++;
-        if (cent === 99) {
-            segundo++;
-            cent = 0;
-            if (segundo === 59) {
-                minuto++
-                segundo = 0;
-            }
-        }
-
-        showTime(minuto, segundo, cent)
-    }, 10)
-}
+//CRONOMETRO EM CONSTRUÇÃO
