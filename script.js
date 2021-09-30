@@ -31,30 +31,29 @@ const quatroDiscos = document.getElementById('quatroDiscos');
 const cincoDiscos = document.getElementById('cincoDiscos');
 const resultsDiv = document.getElementById('results');
 
+const desabilitarBotoes = () => {
+    tresDiscos.disabled = true;
+    quatroDiscos.disabled=true;
+    cincoDiscos.disabled = true;
+}
 
-// É MELHOR CRIAR UMA FUNÇÃO DO DESABILITADO PARA NAO FICAR REPETITIVO
+// É MELHOR CRIAR UMA FUNÇÃO DO DESABILITADO PARA NAO FICAR REPETITIVO -- feito
 let discos = 2;
 
 tresDiscos.addEventListener("click", function () {
     discos = 3;
-    tresDiscos.disabled = true;
-    quatroDiscos.disabled=true;
-    cincoDiscos.disabled = true;
+    desabilitarBotoes()
     resultsDiv.innerHTML = criarBlocos(3)
 })
 quatroDiscos.addEventListener("click", function () {
     discos = 4;
-    tresDiscos.disabled = true;
-    quatroDiscos.disabled=true;
-    cincoDiscos.disabled = true;
+    desabilitarBotoes()
     resultsDiv.innerHTML = criarBlocos(4)
 
 })
 cincoDiscos.addEventListener("click", function () {
     discos = 5;
-    tresDiscos.disabled = true;
-    quatroDiscos.disabled=true;
-    cincoDiscos.disabled = true;
+    desabilitarBotoes()
     resultsDiv.innerHTML = criarBlocos(5)
 })
 
