@@ -270,3 +270,90 @@ button:hover {
         cursor: pointer;
     }
 }
+
+@media screen and (max-width: 380px){
+header h1 {
+    color:rgb(250, 250, 250);
+}
+header #cabecalho {
+    justify-content: center;
+}
+#extraKenzie{
+    display: flex;
+    flex-direction: row;
+}
+#extraKenzie button {
+    width: 75px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    margin-top: 25px;
+}
+.bonus {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+#movimentos{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#btn-start{
+    height: 39px;
+    font-size: 15px;
+    position: absolute;
+    left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    width: 108px;
+    margin-top: 50px;
+    background-color: transparent;
+    border: solid whitesmoke;
+    border-radius: 5px; 
+}
+
+#main {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#time-content{
+    position: absolute;
+    left: 162px;
+    bottom: 20px
+}
+#btn-restart {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;   
+    width: 30%;
+    background-color: transparent;
+    color: whitesmoke;
+    border: solid whitesmoke;
+    border-radius: 5px;
+}
+
+#main .torre #bloco4 {
+    width: 110px;
+}
+#main .torre #bloco3 {
+    width: 86px;
+}
+#main .torre #bloco2 {
+    width: 66px;
+}
+#main .torre #bloco1 {
+    width: 46px;
+}
+#main .torre #bloco0 {
+    width: 26px;
+}
+}
