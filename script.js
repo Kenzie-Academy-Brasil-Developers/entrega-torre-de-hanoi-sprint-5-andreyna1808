@@ -24,21 +24,62 @@ function criarBlocos(n) {
         torre1.appendChild(bloco);
     }
 }
+
 // -- FUNÇÃO DO BOTAO NIVEIS DE DIFICULDADE --
 const tresDiscos = document.getElementById("tresDiscos");
 const quatroDiscos = document.getElementById('quatroDiscos');
 const cincoDiscos = document.getElementById('cincoDiscos');
 const resultsDiv = document.getElementById('results');
 
+
+// É MELHOR CRIAR UMA FUNÇÃO DO DESABILITADO PARA NAO FICAR REPETITIVO
+let discos = 2;
+
 tresDiscos.addEventListener("click", function () {
+    discos = 3;
+    tresDiscos.disabled = true;
+    quatroDiscos.disabled=true;
+    cincoDiscos.disabled = true;
     resultsDiv.innerHTML = criarBlocos(3)
 })
 quatroDiscos.addEventListener("click", function () {
+    discos = 4;
+    tresDiscos.disabled = true;
+    quatroDiscos.disabled=true;
+    cincoDiscos.disabled = true;
     resultsDiv.innerHTML = criarBlocos(4)
+
 })
 cincoDiscos.addEventListener("click", function () {
+    discos = 5;
+    tresDiscos.disabled = true;
+    quatroDiscos.disabled=true;
+    cincoDiscos.disabled = true;
     resultsDiv.innerHTML = criarBlocos(5)
 })
+
+// RENICIAR O JOGO SEM SAIR DA PÁGINA
+const btnRestart = document.getElementById('btn-restart');
+const reiniciarJogo = () => {
+    torres.forEach((item) => {
+        item.innerHTML = '';
+    });
+
+    msg.innerText = '';
+    count = 0;
+    movimentos.innerText = `Movimentos: ${count}`;
+
+    criarBlocos();
+    clearInterval(cronometro);
+    time();
+    main.style.pointerEvents = 'visible';
+    msg.style.padding = 0;
+
+    tresDiscos.disabled = false;
+    quatroDiscos.disabled=false;
+    cincoDiscos.disabled = false;
+}
+btnRestart.addEventListener('click', reiniciarJogo);
 
 // BOTAO DE INICIAR O JOGO + CONTAR OS MOVIMENTOS
 const btnStart = document.getElementById('btn-start');
@@ -96,25 +137,6 @@ function validaJogada(torreEscolhida){
     final();
 }
 
-// RENICIAR O JOGO SEM SAIR DA PÁGINA
-const btnRestart = document.getElementById('btn-restart');
-const reiniciarJogo = () => {
-    torres.forEach((item) => {
-        item.innerHTML = '';
-    });
-
-    msg.innerText = '';
-    count = 0;
-    movimentos.innerText = `Movimentos: ${count}`;
-
-    criarBlocos();
-    clearInterval(cronometro);
-    time();
-    main.style.pointerEvents = 'visible';
-    msg.style.padding = 0;
-}
-btnRestart.addEventListener('click', reiniciarJogo);
-
 // CONFIGURAÇÃO DE MENSAGENS (DE ERRO E FINAL)
 const mensagemErr = () => {
     msg.innerText = 'Tu não pode fazer isso';
@@ -126,7 +148,7 @@ const mensagemErr = () => {
     }, 1000);
 }
 const mensagemFinal = () => {
-    msg.innerHTML = 'Parabéns, você conseguiu!';
+    msg.innerHTML = 'Aobahhh, parabéns você conseguiu!!';
     msg.style.color = 'white';
     msg.style.backgroundColor = 'green';
     msg.style.padding = 20 + 'px';
@@ -134,13 +156,14 @@ const mensagemFinal = () => {
 }
 // MENSAGEM FINAL do Vencedor
 const final = () => {
-    if (torres[2].childElementCount === 3 || torres[2].childElementCount === 4 || torres[2].childElementCount === 5) {
+    if (torres[2].childElementCount === discos) {
         mensagemFinal();
         main.style.pointerEvents = 'none';
         clearInterval(cronometro);       
     }
 }
 
+//CRONOMETRO
 const timeContent = document.getElementById('time-content');
 let cronometro;
 
