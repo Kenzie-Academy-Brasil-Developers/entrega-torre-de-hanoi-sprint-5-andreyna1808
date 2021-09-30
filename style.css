@@ -110,6 +110,9 @@ main {
     width: 120px;
     cursor: pointer;
 }
+#extraKenzie {
+    display: none;
+}
 #tresDiscos{
     width: 120px;
     height: 50px;
@@ -355,5 +358,8 @@ header #cabecalho {
 }
 #main .torre #bloco0 {
     width: 26px;
+}
+#extraKenzie {
+    display: none;
 }
 }

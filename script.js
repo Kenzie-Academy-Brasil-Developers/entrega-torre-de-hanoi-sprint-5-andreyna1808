@@ -85,7 +85,7 @@ const btnStart = document.getElementById('btn-start');
 const iniciarJogo = () => {
     btnStart.style.display = 'none';
     btnRestart.style.display = 'inline-block';
-    extraKenzie.style.visibility = 'visible';
+    extraKenzie.style.display = 'block';
     divBase.style.display = 'block';
     criarTorres();
     criarBlocos();
