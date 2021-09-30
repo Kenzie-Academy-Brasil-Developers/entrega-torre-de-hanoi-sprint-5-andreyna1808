@@ -1,11 +1,11 @@
-// -- GERALZÃO ---
+// -- BASICAO --
 const main = document.getElementById('main');
-const divCounts = document.getElementById('counts');
+const extraKenzie = document.getElementById('extraKenzie');
 const msg = document.getElementById('msg');
 const movimentos = document.getElementById('movimentos');
 const divBase = document.getElementById('base');
 
-// CRIAÇÃO DE TORRES E BLOCOS 
+// -- CRIAÇÃO DAS TORRES --
 function criarTorres() {
     for (let i = 1; i <= 3; i++) {
         const torre = document.createElement('div');
@@ -14,51 +14,142 @@ function criarTorres() {
         main.appendChild(torre);
     }
 }
-function criarBlocos() {
-    for (let i = 1; i <= 4; i++) {
+
+// -- CRIAÇÃO DOS BLOCOS --
+function criarBlocos(n) {
+    for (let i = 0; i < n; i++) {
         const bloco = document.createElement('div');
         bloco.classList.add('bloco');
         bloco.id = 'bloco' + i;
         torre1.appendChild(bloco);
     }
 }
+// -- FUNÇÃO DO BOTAO NIVEIS DE DIFICULDADE --
+const tresDiscos = document.getElementById("tresDiscos");
+const quatroDiscos = document.getElementById('quatroDiscos');
+const cincoDiscos = document.getElementById('cincoDiscos');
+const resultsDiv = document.getElementById('results');
 
-// REINICIAR O JOGO 
+tresDiscos.addEventListener("click", function () {
+    resultsDiv.innerHTML = criarBlocos(3)
+})
+quatroDiscos.addEventListener("click", function () {
+    resultsDiv.innerHTML = criarBlocos(4)
+})
+cincoDiscos.addEventListener("click", function () {
+    resultsDiv.innerHTML = criarBlocos(5)
+})
 
-// MENSAGEM FINAL
-const final = () => {
-    if (torres[2].childElementCount === 4) {
-        mensagemFinal();
-        main.style.pointerEvents = 'none';
-        clearInterval(conometro);       
-    }
+// BOTAO DE INICIAR O JOGO + CONTAR OS MOVIMENTOS
+const btnStart = document.getElementById('btn-start');
+const iniciarJogo = () => {
+    btnStart.style.display = 'none';
+    btnRestart.style.display = 'inline-block';
+    extraKenzie.style.visibility = 'visible';
+    divBase.style.display = 'block';
+    criarTorres();
+    criarBlocos();
+    movimentos.innerText = `Movimentos: ${count}`;
+
+    torres = document.querySelectorAll('.torre');
+    torres.forEach((item) => {
+        item.addEventListener("click", escolhaTorre);
+    });
+
+    time();
 }
+btnStart.addEventListener('click', iniciarJogo);
+
+
+// LÓGICA DO JOGO 
+let blocoAtual = '';
+let count = 0;
+
+function escolhaTorre(e) {
+    const torreEscolhida = e.currentTarget;
+    validaJogada(torreEscolhida);
+    
+}
+function validaJogada(torreEscolhida){
+    if (blocoAtual === '' && torreEscolhida.childElementCount !== 0) {
+        blocoAtual = torreEscolhida.firstElementChild;
+    }
+    if (blocoAtual === '' && torreEscolhida.childElementCount === 0) {
+        mensagemErr();
+    }
+    if (torreEscolhida.childElementCount === 0) {
+        torreEscolhida.insertAdjacentElement('afterbegin', blocoAtual);
+        count++
+        blocoAtual = '';
+    }
+    if (torreEscolhida.firstElementChild.clientWidth > blocoAtual.clientWidth) {
+        torreEscolhida.insertAdjacentElement('afterbegin', blocoAtual);
+        count++
+        blocoAtual = '';
+    }
+    if (torreEscolhida.firstElementChild.clientWidth < blocoAtual.clientWidth) {
+        mensagemErr();
+        blocoAtual = '';
+    }
+    //contar os movimentos executados
+    movimentos.innerText = `Movimentos: ${count}`;
+    final();
+}
+
+// RENICIAR O JOGO SEM SAIR DA PÁGINA
+const btnRestart = document.getElementById('btn-restart');
+const reiniciarJogo = () => {
+    torres.forEach((item) => {
+        item.innerHTML = '';
+    });
+
+    msg.innerText = '';
+    count = 0;
+    movimentos.innerText = `Movimentos: ${count}`;
+
+    criarBlocos();
+    clearInterval(cronometro);
+    time();
+    main.style.pointerEvents = 'visible';
+    msg.style.padding = 0;
+}
+btnRestart.addEventListener('click', reiniciarJogo);
 
 // CONFIGURAÇÃO DE MENSAGENS (DE ERRO E FINAL)
 const mensagemErr = () => {
-    msg.innerText = 'TU NÃO PODE! CHORA BEBE';
-    msg.style.color = 'red';
+    msg.innerText = 'Tu não pode fazer isso';
+    msg.style.color = 'white';
+    msg.style.backgroundColor = 'red';
+
     setTimeout(() => {
         msg.innerText = '';
-    }, 2000);
+    }, 1000);
 }
 const mensagemFinal = () => {
-    msg.innerHTML = 'Aobahh o miserável é um gênio!';
-    msg.style.color = '';
+    msg.innerHTML = 'Parabéns, você conseguiu!';
+    msg.style.color = 'white';
     msg.style.backgroundColor = 'green';
     msg.style.padding = 20 + 'px';
+
+}
+// MENSAGEM FINAL do Vencedor
+const final = () => {
+    if (torres[2].childElementCount === 3 || torres[2].childElementCount === 4 || torres[2].childElementCount === 5) {
+        mensagemFinal();
+        main.style.pointerEvents = 'none';
+        clearInterval(cronometro);       
+    }
 }
 
-//CRONOMETRO DOS SEGUNDOS
 const timeContent = document.getElementById('time-content');
-let conometro;
+let cronometro;
 
 const time = () => {
     let minuto = 0;
     let segundo = 0;
     let cent = 0;
 
-    conometro = setInterval(() => {
+    cronometro = setInterval(() => {
         cent++;
         if (cent === 99) {
             segundo++;
@@ -69,98 +160,18 @@ const time = () => {
             }
         }
 
-        showTime(minuto, segundo)
+        showTime(minuto, segundo, cent)
     }, 10)
 }
 
-const showTime = (min, seg) => {
-    if (seg < 10 && min < 10) {
+const showTime = (min, seg, cen) => {
+    if (cen < 10 && seg < 10 && min < 10) {
         timeContent.innerText = `0${min} : 0${seg}`
-    }  
-    if (seg < 10 && min < 10) {
+    } else if (cen >= 10 && seg < 10 && min < 10) {
         timeContent.innerText = `0${min} : 0${seg}`
-    }  
-    if (seg >= 10 && min < 10) {
+    } else if (cen >= 10 && seg >= 10 && min < 10) {
         timeContent.innerText = `0${min} : ${seg}`
-    }  
-    if (seg >= 10 && min >= 10) {
+    } else if (cen >= 10 && seg >= 10 && min >= 10) {
         timeContent.innerText = `${min} : ${seg}`
     }
-}
-
-
-
-// -- BRUNO --
-
-const main = document.querySelector('.main')
-const torre1 = document.createElement('div')
-const torre2 = document.createElement('div')
-const torre3 = document.createElement('div')
-
-torre1.className = 'torre'
-torre2.className = 'torre'
-torre3.className = 'torre'
-torre1.id = 'torre1'
-torre2.id = 'torre2'
-torre3.id = 'torre3'
-
-main.appendChild(torre1)
-main.appendChild(torre2)
-main.appendChild(torre3)
-
-const bloco1 = document.createElement('div')
-const bloco2 = document.createElement('div')
-const bloco3 = document.createElement('div')
-const bloco4 = document.createElement('div')
-
-bloco1.id = 'bloco1'
-bloco2.id = 'bloco2'
-bloco3.id = 'bloco3'
-bloco4.id = 'bloco4'
-
-torre1.appendChild(bloco1)
-torre1.appendChild(bloco2)
-torre1.appendChild(bloco3)
-torre1.appendChild(bloco4)
-
-let controle = true
-let elementoClicado = null
-
-
-function primeiroClick(id){
-    let torre = document.getElementById(id)
-    if(torre.lastElementChild !== null){
-        elementoClicado = torre.lastElementChild
-        controle = false
-    }
-}
-
-function segundoClick(id){
-    let torre = document.getElementById(id)
-    if(torre.lastElementChild === null){
-        torre.appendChild(elementoClicado)
-        elementoClicado = torre.lastElementChild
-        controle = true
-    }else if(torre.lastElementChild.clientWidth > elementoClicado.clientWidth){
-        console.log(torre.lastElementChild)
-        console.log(elementoClicado)
-        torre.appendChild(elementoClicado)
-        elementoClicado = torre.lastElementChild
-        controle = true
-    }
-}
-
-function handleClick(id){
-    if(controle === true){
-        primeiroClick(id)
-    }else{
-        segundoClick(id)
-    }
-}
-
-const torres = document.querySelectorAll('.torre')
-for(let i = 0; i < torres.length; i ++){
-    torres[i].addEventListener('click', function(){
-        handleClick(torres[i].id)
-    })
 }
